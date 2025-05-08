@@ -3,6 +3,8 @@ from abc import abstractmethod
 from PyQt6.QtCore import QPoint
 from PyQt6.QtWidgets import QGraphicsItem
 
+from Project import Project
+
 
 class Drawable(QGraphicsItem):
 

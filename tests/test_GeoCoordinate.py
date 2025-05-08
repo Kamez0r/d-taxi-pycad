@@ -1,5 +1,6 @@
 import unittest
-from Project.GeoCoordinate import GeoCoordinate  # Adjust path as needed
+from math import isclose
+from Project.GeoCoordinate import GeoCoordinate  # adjust path as needed
 
 
 class TestGeoCoordinate(unittest.TestCase):
@@ -37,6 +38,43 @@ class TestGeoCoordinate(unittest.TestCase):
         d, m, s = GeoCoordinate.DECtoDMS(original)
         result = GeoCoordinate.DMStoDEC(d, m, s)
         self.assertAlmostEqual(result, original, places=6)
+
+    def test_true_course_delta_coord(self):
+        # From roughly north to south
+        c1 = GeoCoordinate()
+        c2 = GeoCoordinate()
+        c1.setLatitude(48.0)
+        c1.setLongitude(2.0)    # near Paris
+
+        c2.setLatitude(47.0)
+        c2.setLongitude(2.0)
+
+        course = GeoCoordinate.get_true_course_delta_coord(c1, c2)
+        self.assertTrue(170 <= course <= 190)  # Roughly south
+
+    def test_true_course_diagonal(self):
+        c1 = GeoCoordinate()
+        c2 = GeoCoordinate()
+        c1.setLatitude(45.0)
+        c1.setLongitude(5.0)
+
+        c2.setLatitude(46.0)
+        c2.setLongitude(6.0)
+
+        course = GeoCoordinate.get_true_course_delta_coord(c1, c2)
+        self.assertTrue(30 <= course <= 70)  # NE-ish
+
+    def test_apply_magnetic_variation_east(self):
+        true_course = 90  # East
+        mag_var = 10      # East variation = subtract
+        magnetic_course = GeoCoordinate.apply_magnetic_variation(true_course, mag_var)
+        self.assertEqual(magnetic_course, 80)
+
+    def test_apply_magnetic_variation_wraparound(self):
+        true_course = 5
+        mag_var = 10
+        magnetic_course = GeoCoordinate.apply_magnetic_variation(true_course, mag_var)
+        self.assertEqual(magnetic_course, 355)
 
 
 if __name__ == '__main__':

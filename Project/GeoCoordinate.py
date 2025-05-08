@@ -1,3 +1,4 @@
+import math
 
 
 class GeoCoordinate:
@@ -41,3 +42,41 @@ class GeoCoordinate:
         sec_abs = abs(sec)
 
         return sign * (deg_abs + mnt_abs / 60 + sec_abs / 3600)
+
+    @staticmethod
+    def get_true_course_delta_coord(c_start: "GeoCoordinate", c_end: "GeoCoordinate") -> float:
+        """
+        returns "True" runway course from threshold1 to threshold2
+        :return:
+        """
+        lat1 = c_start.getLatitude()
+        lon1 = c_start.getLongitude()
+
+        lat2 = c_end.getLatitude()
+        lon2 = c_end.getLongitude()
+
+        # Convert degrees to radians
+        lat1_rad = math.radians(lat1)
+        lat2_rad = math.radians(lat2)
+        delta_lon_rad = math.radians(lon2 - lon1)
+
+        # Compute initial bearing
+        x = math.sin(delta_lon_rad) * math.cos(lat2_rad)
+        y = math.cos(lat1_rad) * math.sin(lat2_rad) - \
+            math.sin(lat1_rad) * math.cos(lat2_rad) * math.cos(delta_lon_rad)
+        initial_bearing = math.atan2(x, y)
+
+        # Convert from radians to degrees and normalize
+        bearing_deg = (math.degrees(initial_bearing) + 360) % 360
+        return bearing_deg
+
+    @staticmethod
+    def apply_magnetic_variation(true_course, mag_var) -> float:
+        """
+        applies magnetic variation
+        :param true_course: true course to be adjusted
+        :param mag_var: magnetic variation in degrees. Positive for east, negative for east
+        :return:
+        """
+        magnetic_course = (true_course - mag_var) % 360
+        return magnetic_course

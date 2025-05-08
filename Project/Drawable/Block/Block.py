@@ -1,3 +1,4 @@
+from abc import abstractmethod
 from contextlib import suppress
 
 from PyQt6.QtCore import QRectF, QLineF, Qt
@@ -10,8 +11,8 @@ class Block(Drawable):
 
     def __init__(self):
         super().__init__()
-        self.width = 100
-        self.height = 100
+        self.width = 500
+        self.height = 500
 
         self.penWidth = 2
         self.penColor = QColor(255, 0, 0)
@@ -23,9 +24,6 @@ class Block(Drawable):
         self.header_text = "No Header Text"
         self.title_text = "No Title Text"
         self.footer_text = "No Footer Text"
-
-
-
 
     def boundingRect(self):
         return QRectF((-self.width / 2) - self.penWidth / 2, (-self.height / 2) - self.penWidth / 2,

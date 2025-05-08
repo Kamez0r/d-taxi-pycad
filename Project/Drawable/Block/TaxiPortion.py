@@ -4,20 +4,13 @@ from Project.Drawable.Block.BlockPhysical import BlockPhysical
 
 class TaxiPortion(BlockPhysical):
 
-    width: float
-    height: float
-    penWidth: float
-
     def __init__(self, serialized_data: dict):
-        super().__init__(serialized_data)
+        super().__init__()
         self.load_from_serialized(serialized_data)
 
         self.header_text = "Taxiway Portion"
         self.title_text = "TWY [TAXIWAY_LABEL]"
         self.footer_text = "Portion Index: []\nUUID: []"
-
-    def draw(self):
-        pass
 
     def get_serialized(self):
         return {}
