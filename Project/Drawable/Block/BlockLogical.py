@@ -5,6 +5,6 @@ from Project.Drawable.Block.Block import Block
 
 class BlockLogical(Block):
 
-    def __init__(self, serialized_data: dict):
-        super().__init__(serialized_data)
+    def __init__(self):
+        super().__init__()
         self.penColor = QColor(255, 0, 255)

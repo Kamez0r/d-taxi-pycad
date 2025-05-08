@@ -1,17 +1,15 @@
-from abc import abstractmethod
+from contextlib import suppress
 
-from PyQt6.QtCore import QRectF, QLine, QLineF, Qt
-from PyQt6.QtGui import QColor, QPen, QStaticText, QFont, QFontMetrics
-from PyQt6.QtWidgets import QGraphicsLineItem
+from PyQt6.QtCore import QRectF, QLineF, Qt
+from PyQt6.QtGui import QColor, QPen, QFont, QFontMetrics
 
 from Project import Drawable
 
 
 class Block(Drawable):
-    pass
 
-    def __init__(self, serialized_data: dict):
-        super().__init__(serialized_data)
+    def __init__(self):
+        super().__init__()
         self.width = 100
         self.height = 100
 

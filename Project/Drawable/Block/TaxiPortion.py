@@ -1,9 +1,4 @@
-from typing import override
-
 from PyQt6.QtCore import QRectF, QLineF
-from PyQt6.QtWidgets import QGraphicsItem
-
-from Project.Drawable.Block import BlockLogical
 from Project.Drawable.Block.BlockPhysical import BlockPhysical
 
 
