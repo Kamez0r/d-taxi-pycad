@@ -1,14 +1,17 @@
 from abc import ABC,abstractmethod
 
 from PyQt6.QtCore import QPoint
+from PyQt6.QtWidgets import QGraphicsItem
 
 
-class Drawable(ABC):
+class Drawable(QGraphicsItem):
 
     position: QPoint
 
+    @abstractmethod
     def __init__(self, serialized_data: dict):
-        raise TypeError("Drawable is an abstract class and cannot be instantiated directly")
+        # raise TypeError("Drawable is an abstract class and cannot be instantiated directly")
+        super().__init__()
 
     @abstractmethod
     def draw(self):
