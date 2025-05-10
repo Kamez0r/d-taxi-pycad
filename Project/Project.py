@@ -3,13 +3,25 @@ import json
 
 from PyQt6.QtWidgets import QGraphicsView
 
+from .Data import Airport
 from .Drawable import *
+from .GeoCoordinate import GeoCoordinate
+
 
 class Project:
+
+    airport_data: Airport
+
     def __init__(self, canvas: QGraphicsView):
         self.canvas: QGraphicsView = canvas
         self.items: list[Drawable] = []
         self.working_path: str | None = None
+        self.airport_data = Airport(
+            aerodrome_icao="",
+            aerodrome_name="",
+            aerodrome_location=GeoCoordinate.from_tuple((0,0)),
+            magnetic_variation=0,
+        )
 
 
     def load_from_file(self, path_to_file: str):
@@ -21,8 +33,9 @@ class Project:
             items_serialized.append(item.get_serialized())
 
         return {
-            "date_saved": datetime.datetime.now(),
+            "date_saved": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
             # other project data like project name, airport, location, IDK
+            "airport_data": self.airport_data.get_serialized(),
             "items": items_serialized
         }
 

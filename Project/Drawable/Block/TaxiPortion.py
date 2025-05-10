@@ -1,8 +1,13 @@
 from PyQt6.QtCore import QRectF, QLineF
+
+from Project.Data.Taxiway import Taxiway
 from Project.Drawable.Block.BlockPhysical import BlockPhysical
 
 
 class TaxiPortion(BlockPhysical):
+
+    parent_taxiway:Taxiway
+
 
     def __init__(self, serialized_data: dict):
         super().__init__()
@@ -13,10 +18,26 @@ class TaxiPortion(BlockPhysical):
         self.footer_text = "Portion Index: []\nUUID: []"
 
     def get_serialized(self):
-        return {}
+
+        return {
+            "parent_taxiway" : self.parent_taxiway.get_serialized()
+        }
+
+    @staticmethod
+    def check_valid_data(serialized_data: dict):
+        if not "parent_taxiway" in serialized_data:
+            return False
+
+        if not Taxiway.check_valid_data(serialized_data["parent_taxiway"]):
+            return False
+
+        return True
 
     def load_from_serialized(self, serialized: dict):
-        pass
+        if not self.check_valid_data(serialized):
+            raise TypeError("Invalid serialized data")
+
+
 
     def paint_graphics(self, painter, option, widget, bounds: QRectF):
         painter.drawLine(QLineF(

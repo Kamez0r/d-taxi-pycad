@@ -6,9 +6,7 @@ from Project.GeoCoordinate import GeoCoordinate  # adjust path as needed
 class TestGeoCoordinate(unittest.TestCase):
 
     def test_latitude_longitude_setters_getters(self):
-        geo = GeoCoordinate()
-        geo.setLatitude(45.1234)
-        geo.setLongitude(23.5678)
+        geo = GeoCoordinate.from_tuple((45.1234, 23.5678))
 
         self.assertAlmostEqual(geo.getLatitude(), 45.1234)
         self.assertAlmostEqual(geo.getLongitude(), 23.5678)
@@ -41,14 +39,8 @@ class TestGeoCoordinate(unittest.TestCase):
 
     def test_true_course_delta_coord(self):
         # From roughly north to south
-        c1 = GeoCoordinate()
-        c2 = GeoCoordinate()
-        c1.setLatitude(48.0)
-        c1.setLongitude(2.0)    # near Paris
-
-        c2.setLatitude(47.0)
-        c2.setLongitude(2.0)
-
+        c1 = GeoCoordinate.from_tuple((48, 2)) # near Paris
+        c2 = GeoCoordinate.from_tuple((47, 2))
         course = GeoCoordinate.get_true_course_delta_coord(c1, c2)
         self.assertTrue(170 <= course <= 190)  # Roughly south
 

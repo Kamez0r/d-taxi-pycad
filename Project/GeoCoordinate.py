@@ -3,6 +3,8 @@ import math
 
 class GeoCoordinate:
 
+    EarthRadiusMeters = 6371000.0
+
     latitude: float
     longitude: float
 
@@ -10,6 +12,38 @@ class GeoCoordinate:
         pass
 
     # TODO implement relation to screen position
+
+    @staticmethod
+    def check_valid_data(serialized_data: tuple[float,float]):
+        if not (isinstance(serialized_data, tuple) and len(serialized_data) == 2):
+            return False
+
+        lat, lon = serialized_data
+        if not (isinstance(lat, (int, float)) and isinstance(lon, (int, float))):
+            return False
+
+        if not (-90 <= lat <= 90 and -180 <= lon <= 180):
+            return False
+
+        return True
+
+    def get_serialized(self):
+        return self.getLatitude(), self.getLongitude()
+
+    @staticmethod
+    def from_serialized_data(serial_data: tuple[float, float]) -> "GeoCoordinate":
+        if not GeoCoordinate.check_valid_data(serial_data):
+            raise TypeError("Serial data is not valid")
+
+        instance = GeoCoordinate()
+        instance.latitude, instance.longitude = serial_data
+        return instance
+
+    @staticmethod
+    def from_tuple(lat_lon: tuple[float, float]) -> "GeoCoordinate":
+        instance = GeoCoordinate()
+        instance.latitude, instance.longitude = lat_lon
+        return instance
 
     ## Getters and Setters
     def setLatitude(self, latitude: float):
@@ -80,3 +114,7 @@ class GeoCoordinate:
         """
         magnetic_course = (true_course - mag_var) % 360
         return magnetic_course
+
+    @staticmethod
+    def remove_magnetic_variation(mag_course, mag_var) -> float:
+        return GeoCoordinate.apply_magnetic_variation(mag_course, -mag_var)
