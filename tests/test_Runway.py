@@ -24,17 +24,17 @@ class TestRunway(unittest.TestCase):
             ## TODO use correct data bellow
             {
                 "name": "LRTR 11/29",
-                "threshold1": (45.8117, 21.3333),
-                "threshold2": (45.8028, 21.4373),
+                "threshold1": (45.815111, 21.316811),
+                "threshold2": (45.804688, 21.358363),
                 "mag_var": 4.0,
                 "expected": (11, 29)
             },
             {
-                "name": "KJFK 04L/22R",
-                "threshold1": (40.6398, -73.7789),
-                "threshold2": (40.6516, -73.7514),
-                "mag_var": -13.0,
-                "expected": (4, 22)
+                "name": "LRBV 04/22",
+                "threshold1": (45.696019, 25.512837),
+                "threshold2": (45.716409, 25.534182),
+                "mag_var": 6.0,
+                "expected": (3, 21)
             },
         ]
 
