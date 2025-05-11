@@ -29,6 +29,8 @@ class ProjectEditorWindow(QMainWindow):
         self.main_layout.setContentsMargins(20, 30, 20, 30)
         self.main_layout.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignHCenter)
 
+        self.general_font = QFont("Consolas", 16)
+
         # First Row
         self.first_H_layout = QHBoxLayout()
         self.first_H_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -58,12 +60,29 @@ class ProjectEditorWindow(QMainWindow):
         self.mag_var_input.setFont(self.first_row_font)
         self.mag_var_input.setFixedWidth(84)
         self.first_H_layout.addWidget(self.mag_var_input)
-        # self.set
+
+        self.main_layout.addLayout(self.first_H_layout)
 
         # Seconds Row
 
+        self.aerodrome_name_label = QLabel("Aerodrome Name:")
+        self.aerodrome_name_label.setFont(self.general_font)
+        self.main_layout.addWidget(self.aerodrome_name_label)
 
-        self.main_layout.addLayout(self.first_H_layout)
+        self.aerodrome_name_input = QLineEdit()
+        self.aerodrome_name_input.setFont(self.general_font)
+        self.main_layout.addWidget(self.aerodrome_name_input)
+
+        # Third Row
+        self.aerodrome_latitude = QLabel("Latitude: 12.3")
+        self.aerodrome_longitude = QLabel("26.3")
+
+        self.third_H_layout = QHBoxLayout()
+
+
+        self.main_layout.addLayout(self.third_H_layout)
+
+
         self.main_widget = QWidget()
         self.main_widget.setLayout(self.main_layout)
         self.setCentralWidget(self.main_widget)
