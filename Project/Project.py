@@ -10,10 +10,13 @@ from .GeoCoordinate import GeoCoordinate
 
 class Project:
 
+    project_path: str | None
     airport_data: Airport
 
-    def __init__(self, canvas: QGraphicsView):
+    def __init__(self, canvas: QGraphicsView, project_path: str = None):
         self.canvas: QGraphicsView = canvas
+        self.project_path = project_path
+
         self.items: list[Drawable] = []
         self.working_path: str | None = None
         self.airport_data = Airport(
