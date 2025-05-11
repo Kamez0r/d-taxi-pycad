@@ -1,5 +1,5 @@
 {
-    "date_saved": "2025-05-10T23:30:45",
+    "date_saved": "2025-05-11T16:42:17",
     "airport_data": {
         "aerodrome_icao": "LROP",
         "aerodrome_name": "Aeroportul International HENRI COANDA, Bucuresti",
@@ -14,7 +14,7 @@
                 "__comment_opposite": "26R",
                 "direction_modifier": 0,
                 "direction_suffix": "L",
-                "magnetic_variation": 5,
+                "magnetic_variation": 5.0,
                 "threshold1": [
                     44.57666666666667,
                     26.084166666666665
@@ -36,7 +36,7 @@
                 "__comment_opposite": "26L",
                 "direction_modifier": 0,
                 "direction_suffix": "R",
-                "magnetic_variation": 5,
+                "magnetic_variation": 5.0,
                 "threshold1": [
                     44.56472222222222,
                     26.076666666666668

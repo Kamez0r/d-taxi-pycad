@@ -1,0 +1,6 @@
+
+WINDOW_TITLE = "myCAD"
+WINDOW_WIDTH = 1280
+WINDOW_HEIGHT = 1024
+
+from .icons import *
