@@ -1,0 +1,135 @@
+{
+    "date_saved": "2025-05-10T23:30:45",
+    "airport_data": {
+        "aerodrome_icao": "LROP",
+        "aerodrome_name": "Aeroportul International HENRI COANDA, Bucuresti",
+        "magnetic_variation": 5,
+        "aerodrome_location": [
+            44.571111111111115,
+            26.084999999999997
+        ],
+        "runways": [
+            {
+                "__comment_designator": "8L",
+                "__comment_opposite": "26R",
+                "direction_modifier": 0,
+                "direction_suffix": "L",
+                "magnetic_variation": 5,
+                "threshold1": [
+                    44.57666666666667,
+                    26.084166666666665
+                ],
+                "threshold2": [
+                    44.579947469429115,
+                    26.128103385761293
+                ],
+                "intersecting_runways": [],
+                "access_to_taxiways": [
+                    "N",
+                    "V",
+                    "W",
+                    "Q"
+                ]
+            },
+            {
+                "__comment_designator": "8R",
+                "__comment_opposite": "26L",
+                "direction_modifier": 0,
+                "direction_suffix": "R",
+                "magnetic_variation": 5,
+                "threshold1": [
+                    44.56472222222222,
+                    26.076666666666668
+                ],
+                "threshold2": [
+                    44.56800489896314,
+                    26.120619472544764
+                ],
+                "intersecting_runways": [],
+                "access_to_taxiways": [
+                    "G",
+                    "D"
+                ]
+            }
+        ],
+        "taxiways": [
+            {
+                "designator": "Q",
+                "access_to_runways": [
+                    "8L"
+                ],
+                "access_to_taxiways": [
+                    "N",
+                    "W",
+                    "V"
+                ],
+                "access_to_stands": []
+            },
+            {
+                "designator": "N",
+                "access_to_runways": [
+                    "8L"
+                ],
+                "access_to_taxiways": [
+                    "Q",
+                    "G",
+                    "C"
+                ],
+                "access_to_stands": []
+            },
+            {
+                "designator": "W",
+                "access_to_runways": [
+                    "8L"
+                ],
+                "access_to_taxiways": [
+                    "Q"
+                ],
+                "access_to_stands": []
+            },
+            {
+                "designator": "V",
+                "access_to_runways": [
+                    "8L"
+                ],
+                "access_to_taxiways": [
+                    "Q"
+                ],
+                "access_to_stands": []
+            },
+            {
+                "designator": "G",
+                "access_to_runways": [
+                    "8R"
+                ],
+                "access_to_taxiways": [
+                    "N",
+                    "C"
+                ],
+                "access_to_stands": []
+            },
+            {
+                "designator": "C",
+                "access_to_runways": [],
+                "access_to_taxiways": [
+                    "N",
+                    "G",
+                    "D"
+                ],
+                "access_to_stands": []
+            },
+            {
+                "designator": "D",
+                "access_to_runways": [
+                    "8R"
+                ],
+                "access_to_taxiways": [
+                    "C"
+                ],
+                "access_to_stands": []
+            }
+        ],
+        "stands": []
+    },
+    "items": []
+}

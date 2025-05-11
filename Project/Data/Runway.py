@@ -23,7 +23,7 @@ class Runway:
         self.direction_modifier = direction_modifier
         self.direction_suffix = direction_suffix
 
-        self.magnetic_variation = magnetic_variation
+        self.magnetic_variation = float(magnetic_variation)
         self.intersecting_runways = []
         self.access_to_taxiways = []
 

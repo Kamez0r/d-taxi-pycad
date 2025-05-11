@@ -14,7 +14,7 @@ class TaxiPortion(BlockPhysical):
         self.load_from_serialized(serialized_data)
 
         self.header_text = "Taxiway Portion"
-        self.title_text = "TWY [TAXIWAY_LABEL]"
+        self.title_text = "TWY " + str(self.parent_taxiway.get_designator())
         self.footer_text = "Portion Index: []\nUUID: []"
 
     def get_serialized(self):
@@ -37,7 +37,10 @@ class TaxiPortion(BlockPhysical):
         if not self.check_valid_data(serialized):
             raise TypeError("Invalid serialized data")
 
+        self.parent_taxiway = Taxiway(serialized["parent_taxiway"]["designator"])
 
+    def get_taxiway(self):
+        return self.parent_taxiway
 
     def paint_graphics(self, painter, option, widget, bounds: QRectF):
         painter.drawLine(QLineF(
