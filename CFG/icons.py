@@ -1,5 +1,5 @@
 
-DEFAULT_ICON = "resources/icons/default.png"
+DEFAULT_ICON = "icons/placeholder.png"
 
 TOOLBAR_ICON_SIZE_W = 48
 TOOLBAR_ICON_SIZE_H = 48
@@ -18,3 +18,4 @@ ICON_ROTATE_LEFT = "icons/undo.png"
 ICON_ROTATE_RIGHT= "icons/redo.png"
 ICON_OPEN_IN_NEW = "icons/open_in_new.png"
 ICON_CONSOLE = "icons/console.png"
+ICON_WRENCH = "icons/wrench.png"

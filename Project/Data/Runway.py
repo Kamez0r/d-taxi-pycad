@@ -54,7 +54,7 @@ class Runway:
             "__comment_opposite": self.get_inverse_designator(),
             "direction_modifier": self.direction_modifier,
             "direction_suffix": self.direction_suffix,
-            "magnetic_variation": self.magnetic_variation,
+            "magnetic_variation": float(self.magnetic_variation),
             "threshold1": self.threshold1.get_serialized(),
             "threshold2": self.threshold2.get_serialized(),
             "intersecting_runways": rws,

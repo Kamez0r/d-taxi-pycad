@@ -16,3 +16,8 @@ class ToolBar(QToolBar):
         button_new.setStatusTip("Create Blank Project")
         button_new.setCheckable(False)
         self.addAction(button_new)
+
+        self.action_project_settings = QAction(QIcon(CFG.ICON_WRENCH), "Project Settings", self)
+        self.action_project_settings.setStatusTip("Project Settings")
+        self.action_project_settings.setCheckable(False)
+        self.addAction(self.action_project_settings)

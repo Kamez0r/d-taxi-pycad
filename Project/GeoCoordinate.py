@@ -15,7 +15,10 @@ class GeoCoordinate:
 
     @staticmethod
     def check_valid_data(serialized_data: tuple[float,float]):
-        if not (isinstance(serialized_data, tuple) and len(serialized_data) == 2):
+
+        if not (isinstance(serialized_data, (list, tuple)) and len(serialized_data) == 2):
+            print(type(serialized_data))
+            print(len(serialized_data))
             return False
 
         lat, lon = serialized_data
@@ -24,6 +27,7 @@ class GeoCoordinate:
 
         if not (-90 <= lat <= 90 and -180 <= lon <= 180):
             return False
+
 
         return True
 

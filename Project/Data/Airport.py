@@ -31,6 +31,7 @@ class Airport:
 
     @staticmethod
     def check_valid_data(serialized_data: dict):
+
         if not "magnetic_variation" in serialized_data:
             return False
 
@@ -91,7 +92,7 @@ class Airport:
         return {
             "aerodrome_icao": self.aerodrome_icao,
             "aerodrome_name": self.aerodrome_name,
-            "magnetic_variation": self.magnetic_variation,
+            "magnetic_variation": float(self.magnetic_variation),
             "aerodrome_location": self.aerodrome_location.get_serialized(),
             "runways": rws,
             "taxiways": tws,
