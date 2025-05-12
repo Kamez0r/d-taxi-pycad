@@ -35,3 +35,9 @@ class StandList(CRUDLayout):
 
     def action_called(self, row_index, action_column_key):
         print("CALL FOR", row_index, action_column_key)
+
+        if action_column_key == "action_create":
+            self.add_value({
+                "designator": "ABC",
+                "position": GeoCoordinate.from_tuple((0,0)),
+            })

@@ -38,7 +38,7 @@ class Project:
         if not Airport.check_valid_data(sdata["airport_data"]):
             return False
 
-        if not "items" in sdata:
+        if not "drawables" in sdata:
             return False
 
         return True

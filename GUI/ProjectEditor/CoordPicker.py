@@ -1,4 +1,4 @@
-from PyQt6.QtCore import QSize
+from PyQt6.QtCore import QSize, pyqtSignal
 from PyQt6.QtGui import QIntValidator, QDoubleValidator, QIcon, QFont
 from PyQt6.QtWidgets import QVBoxLayout, QHBoxLayout, QPushButton, QLabel
 
@@ -16,9 +16,11 @@ class CoordPicker(QVBoxLayout):
     location_label_text: str
     location: GeoCoordinate
 
+    location_changed = pyqtSignal()
+
     def __init__(self):
         super().__init__()
-        self.location = GeoCoordinate()
+        self.location = GeoCoordinate.from_tuple((0,0))
 
         self.location_label_text = ""
 
@@ -28,6 +30,7 @@ class CoordPicker(QVBoxLayout):
         self.location = location
         self.location_latitude.setText("Latitude: " + str(self.location.getLatitude()))
         self.location_longitude.setText("Longitude: " + str(self.location.getLongitude()))
+        self.location_changed.emit()
 
     def setLocationLabel(self, location_label_text: str):
         self.location_label_text = location_label_text

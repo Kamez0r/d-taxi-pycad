@@ -16,6 +16,8 @@ class MainWindow(QMainWindow):
 
     project_editor_open: bool = False
 
+    project_editor_window: ProjectEditorWindow
+
     def __init__(self):
         super().__init__()
         self.setWindowTitle(CFG.WINDOW_TITLE)
@@ -47,8 +49,6 @@ class MainWindow(QMainWindow):
         QShortcut(QKeySequence.StandardKey.Save, self).activated.connect(self.save_project)
         QShortcut(QKeySequence.StandardKey.Open, self).activated.connect(self.open_project)
         QShortcut(QKeySequence.StandardKey.New, self).activated.connect(self.new_project)
-
-
 
         # Connect Toolbar Actions
         # self.tool_bar.action_new.triggered.connect(self.new_file)
@@ -109,6 +109,7 @@ class MainWindow(QMainWindow):
         if response == QMessageBox.StandardButton.Yes:
             self._open_project()
             self.status_bar.showMessage("Project loaded", 2000)
+
 
     def save_as_project(self):
 

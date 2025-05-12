@@ -1,5 +1,8 @@
+from PyQt6.QtCore import QSize, Qt
+from PyQt6.QtGui import QIcon, QFont
 from PyQt6.QtWidgets import QVBoxLayout, QLabel, QLineEdit, QTableWidget, QTableWidgetItem, QPushButton
 
+import CFG
 from GUI.ProjectEditor.PEWidgets import PELabel, PELineEdit
 from Project import GeoCoordinate
 
@@ -39,9 +42,18 @@ class CRUDLayout(QVBoxLayout):
 
         self.addWidget(self.layout_title)
 
+
         self.search_bar = PELineEdit()
         self.search_bar.setPlaceholderText("Search...")
         self.addWidget(self.search_bar)
+
+        self.create_button = QPushButton("Create")
+        self.create_button.setIcon(QIcon(CFG.ICON_ADD))
+        self.create_button.setIconSize(QSize(32,32))
+        self.create_button.setFont(QFont("Consolas", 24))
+        self.create_button.setMaximumWidth(200)
+        self.create_button.clicked.connect(lambda: self.action_called(0, "action_create"))
+        self.addWidget(self.create_button)
 
         self.table = QTableWidget()
         self.table.setMinimumHeight(300)
@@ -75,7 +87,8 @@ class CRUDLayout(QVBoxLayout):
         display_value = ""
         if self.column_types[col] == "COORD":
             display_value = str(self.values[row][col].getLatitude()) + "," + str(self.values[row][col].getLongitude())
-            self.table.setItem(row, col, QTableWidgetItem(display_value))
+            widget = QTableWidgetItem(display_value)
+            self.table.setItem(row, col, widget)
         elif self.column_types[col] == "ACTION":
             widget = QPushButton(text="ACT")
             widget.pressed.connect(lambda r=row, c=self.column_keys[col]: self.action_called(r, c))
@@ -101,7 +114,7 @@ class CRUDLayout(QVBoxLayout):
         for column_key in one_row_values:
             column_index = self.column_keys.index(column_key)
             # self.table.setItem(0,column_index, self.get_widget_at(0, column_index))
-            self.update_cell_at(0, column_index)
+            self.update_cell_at(len(self.values)-1, column_index)
 
     def add_values(self, value_list: list):
         for value in value_list:

@@ -1,7 +1,7 @@
 from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtGui import QIcon, QFont, QDoubleValidator
 from PyQt6.QtWidgets import *
-from PyQt6.QtWidgets import QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QWidget, QScrollArea
+from PyQt6.QtWidgets import QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QWidget, QScrollArea, QPushButton
 
 import CFG
 from GUI.ProjectEditor.CoordPicker import CoordPicker
@@ -13,6 +13,7 @@ from Project import Project
 
 
 class ProjectEditorWindow(QMainWindow):
+    update_button: QPushButton
     runway_list_layout: RunwayList
     scroll_area: QScrollArea
     aerodrome_location_label: QLabel | QLabel
@@ -47,6 +48,20 @@ class ProjectEditorWindow(QMainWindow):
 
         self.show()
 
+    def allow_update(self):
+        self.update_button.setEnabled(True)
+
+    def force_update(self):
+        self.update_button.setEnabled(False)
+
+        self.project.airport_data.aerodrome_icao = self.icao_input.text()
+        self.project.airport_data.aerodrome_name = self.aerodrome_name_input.text()
+
+        if self.mag_var_input.text() != "":
+            self.project.airport_data.magnetic_variation = float(self.mag_var_input.text())
+        self.project.airport_data.aerodrome_location = self.aerodrome_location_layout.location
+
+
     def generate_fields(self):
 
 
@@ -55,6 +70,12 @@ class ProjectEditorWindow(QMainWindow):
 
         self.main_layout.setContentsMargins(20, 30, 20, 30)
         self.main_layout.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignHCenter)
+
+        self.update_button = QPushButton("Update")
+        self.update_button.setFont(QFont("Consolas", 36))
+        self.update_button.setEnabled(False)
+        self.update_button.clicked.connect(self.force_update)
+        self.main_layout.addWidget(self.update_button)
 
         # First Row
         self.first_H_layout = QHBoxLayout()
@@ -69,6 +90,7 @@ class ProjectEditorWindow(QMainWindow):
         self.icao_input.setMaxLength(4)
         self.icao_input.setFixedWidth(96)
         self.icao_input.setFont(self.first_row_font)
+        self.icao_input.textChanged.connect(self.allow_update)
         self.first_H_layout.addWidget(self.icao_input)
 
         self.first_H_layout.addSpacing(40)
@@ -84,6 +106,7 @@ class ProjectEditorWindow(QMainWindow):
         self.mag_var_input.setValidator(self.mag_var_validator)
         self.mag_var_input.setFont(self.first_row_font)
         self.mag_var_input.setFixedWidth(84)
+        self.mag_var_input.textChanged.connect(self.allow_update)
         self.first_H_layout.addWidget(self.mag_var_input)
 
         self.main_layout.addLayout(self.first_H_layout)
@@ -94,22 +117,22 @@ class ProjectEditorWindow(QMainWindow):
         self.main_layout.addWidget(self.aerodrome_name_label)
 
         self.aerodrome_name_input = PELineEdit()
+        self.aerodrome_name_input.textChanged.connect(self.allow_update)
         self.main_layout.addWidget(self.aerodrome_name_input)
 
         self.generate_fields_location()
 
+        self.stand_list_layout = StandList(self.project)
+        self.stand_list_layout.layout_title.setText("Stand List")
+        self.main_layout.addLayout(self.stand_list_layout)
+
         self.runway_list_layout = RunwayList(self.project)
         self.runway_list_layout.layout_title.setText("Runway List")
+        self.main_layout.addLayout(self.runway_list_layout)
 
         self.taxiway_list_layout = TaxiwayList(self.project)
         self.taxiway_list_layout.layout_title.setText("Taxiway List")
-
-        self.stand_list_layout = StandList(self.project)
-        self.stand_list_layout.layout_title.setText("Stand List")
-
-        self.main_layout.addLayout(self.runway_list_layout)
         self.main_layout.addLayout(self.taxiway_list_layout)
-        self.main_layout.addLayout(self.stand_list_layout)
 
 
         self.main_widget = QWidget()
@@ -125,7 +148,11 @@ class ProjectEditorWindow(QMainWindow):
         # Third Row
         self.aerodrome_location_layout = CoordPicker()
         self.aerodrome_location_layout.setLocationLabel("Aerodrome Location:")
+        self.aerodrome_location_layout.location_changed.connect(self.allow_update)
         self.main_layout.addLayout(self.aerodrome_location_layout)
 
     def populate_fields(self):
-        pass
+        self.icao_input.setText(self.project.airport_data.aerodrome_icao)
+        self.mag_var_input.setText(str(self.project.airport_data.magnetic_variation))
+        self.aerodrome_name_input.setText(self.project.airport_data.aerodrome_name)
+        self.aerodrome_location_layout.setLocation(self.project.airport_data.aerodrome_location)
