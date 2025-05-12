@@ -78,6 +78,7 @@ class CoordPicker(QVBoxLayout):
 
         # Button
         self.set_location_from_dms = QPushButton("Set")
+        self.set_location_from_dms.clicked.connect(self.on_set_from_dms)
         self.set_location_from_dms.setIcon(QIcon(CFG.ICON_CALCULATOR))
         self.set_location_from_dms.setIconSize(QSize(32, 32))
         self.set_location_from_dms.setFont(QFont("Consolas", 16))
@@ -130,7 +131,7 @@ class CoordPicker(QVBoxLayout):
         self.addLayout(self.fifth_H_layout)
 
     def on_set_from_dec(self):
-        if not self.lat_input.text().isnumeric() or not self.lon_input.text().isnumeric():
+        if not self.lat_input.text() != "" or not self.lon_input.text() != "":
             print("Invalid coordinate")
             return
 
@@ -142,3 +143,51 @@ class CoordPicker(QVBoxLayout):
             self.setLocation(GeoCoordinate.from_tuple(tupley))
         else:
             print("Invalid coordinate", tupley)
+
+    def on_set_from_dms(self):
+        if not self.lat_dms_deg_input.text() != "":
+            print("Invalid coordinate1")
+            return
+
+        if not self.lat_dms_min_input.text() != "":
+            print("Invalid coordinate2")
+            return
+
+        if not self.lat_dms_sec_input.text() != "":
+            print("Invalid coordinate3")
+            return
+
+        if not self.lon_dms_deg_input.text() != "":
+            print("Invalid coordinate4")
+            return
+
+        if not self.lon_dms_min_input.text() != "":
+            print("Invalid coordinate5")
+            return
+
+        if not self.lon_dms_sec_input.text() != "":
+            print("Invalid coordinate6")
+            return
+
+        lat, lon = GeoCoordinate.DMStoDEC(
+            int(self.lat_dms_deg_input.text()),
+            int(self.lat_dms_min_input.text()),
+            float(self.lat_dms_sec_input.text()),
+        ), GeoCoordinate.DMStoDEC(
+            int(self.lon_dms_deg_input.text()),
+            int(self.lon_dms_min_input.text()),
+            float(self.lon_dms_sec_input.text()),
+        )
+
+        self.lat_dms_deg_input.setText("")
+        self.lat_dms_min_input.setText("")
+        self.lat_dms_sec_input.setText("")
+        self.lon_dms_deg_input.setText("")
+        self.lon_dms_min_input.setText("")
+        self.lon_dms_sec_input.setText("")
+
+        if GeoCoordinate.check_valid_data((lat, lon)):
+            self.setLocation(GeoCoordinate.from_tuple((lat, lon)))
+        else:
+            print("Invalid coordinate", lat, lon)
+
