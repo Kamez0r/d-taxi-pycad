@@ -30,3 +30,12 @@ class StandList(CRUDLayout):
             column_type="COORD",
             default_value=GeoCoordinate.from_tuple((0,0))
         )
+
+        self.set_able_view(True)
+        self.set_able_edit(True)
+        self.set_able_delete(True)
+
+        self.add_column({})
+
+    def action_called(self, action_column_key):
+        pass

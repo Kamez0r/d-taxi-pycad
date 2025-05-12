@@ -113,11 +113,11 @@ class ProjectEditorWindow(QMainWindow):
 
         self.main_widget = QWidget()
         self.main_widget.setLayout(self.main_layout)
-        self.main_widget.setFixedWidth(CFG.PROJECT_EDITOR_WIDTH)
+        self.main_widget.setMaximumWidth(CFG.PROJECT_EDITOR_WIDTH)
         self.scroll_area = QScrollArea()
         self.scroll_area.setWidget(self.main_widget)
         self.scroll_area.setWidgetResizable(True)
-        self.scroll_area.setFixedSize(QSize(CFG.PROJECT_EDITOR_WIDTH, CFG.PROJECT_EDITOR_HEIGHT))
+        self.scroll_area.setMinimumSize(QSize(CFG.PROJECT_EDITOR_WIDTH, CFG.PROJECT_EDITOR_HEIGHT))
         self.setCentralWidget(self.scroll_area)
 
     def generate_fields_location(self):
