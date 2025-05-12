@@ -1,4 +1,4 @@
-from PyQt6.QtCore import QSize, Qt
+from PyQt6.QtCore import QSize, Qt, pyqtSignal
 from PyQt6.QtGui import QIcon, QFont
 from PyQt6.QtWidgets import QVBoxLayout, QLabel, QLineEdit, QTableWidget, QTableWidgetItem, QPushButton
 
@@ -23,10 +23,12 @@ class CRUDLayout(QVBoxLayout):
 
     pickerwin: None | CoordPickerWindow
 
+    dataset_changed = pyqtSignal()
+
     known_column_types = [
         "STRING",
         "INTEGER",
-        "FLOAT",
+        # "FLOAT",
         "COORD",
         "ACTION"
     ]
@@ -64,9 +66,21 @@ class CRUDLayout(QVBoxLayout):
         self.table.setRowCount(0)
         self.table.setColumnCount(0)
 
+        self.table.itemChanged.connect(self.on_item_change)
+
         self.pickerwin = None
 
         self.addWidget(self.table)
+
+    def on_item_change(self, tableItem: QTableWidgetItem):
+        self.dataset_changed.emit()
+        col_index = tableItem.column()
+        if self.column_types[col_index] == "INTEGER":
+            if not tableItem.text().isnumeric():
+                tableItem.setText(str(self.column_defaults[col_index]))
+            self.values[tableItem.row()][tableItem.column()] = int(tableItem.text())
+        elif self.column_types[col_index] == "STRING":
+            self.values[tableItem.row()][tableItem.column()] = str(tableItem.text())
 
     def action_called(self, row_key, action_column_key):
         pass
@@ -88,6 +102,8 @@ class CRUDLayout(QVBoxLayout):
 
         self.pickerwin.close()
         self.pickerwin = None
+
+        self.dataset_changed.emit()
 
 
     def add_column(self, column_key: str, column_title: str, column_type: str, default_value=None):
@@ -128,6 +144,7 @@ class CRUDLayout(QVBoxLayout):
 
 
     def add_value(self, one_row_values: dict):
+        self.dataset_changed.emit()
         new_row = []
         self.table.setRowCount(len(self.values)+1)
         for column_key in self.column_keys:
@@ -148,6 +165,7 @@ class CRUDLayout(QVBoxLayout):
             self.add_value(value)
 
     def remove_value(self, row:int):
+        self.dataset_changed.emit()
         del self.values[row]
         self.table.removeRow(row)
 

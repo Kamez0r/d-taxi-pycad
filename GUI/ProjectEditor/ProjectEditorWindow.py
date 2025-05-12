@@ -10,6 +10,7 @@ from GUI.ProjectEditor.RunwayList import RunwayList
 from GUI.ProjectEditor.StandList import StandList
 from GUI.ProjectEditor.TaxiwayList import TaxiwayList
 from Project import Project
+from Project.Data import Stand
 
 
 class ProjectEditorWindow(QMainWindow):
@@ -60,6 +61,43 @@ class ProjectEditorWindow(QMainWindow):
         if self.mag_var_input.text() != "":
             self.project.airport_data.magnetic_variation = float(self.mag_var_input.text())
         self.project.airport_data.aerodrome_location = self.aerodrome_location_layout.location
+
+        self.force_update_runways()
+        self.force_update_taxiways()
+        self.force_update_stands()
+
+    def force_update_runways(self):
+        pass
+
+    def force_update_taxiways(self):
+        pass
+
+    def force_update_stands(self):
+        table_map = {}
+        json_map = {}
+
+        index_of_designator = self.stand_list_layout.column_keys.index("designator")
+        index_of_position = self.stand_list_layout.column_keys.index("position")
+        for row in self.stand_list_layout.values:
+            designator = (row[index_of_designator])
+            table_map[designator] = row
+
+        for stand in self.project.airport_data.stands:
+            json_map[stand.get_designator()] = stand
+
+        # Check creation
+        for designator in table_map:
+            if designator not in json_map:
+                pass # creation found
+                self.project.airport_data.add_stand(Stand(
+                    designator=table_map[designator][index_of_designator],
+                    position=table_map[designator][index_of_position],
+                ))
+        # Check deletion
+        for designator in json_map:
+            if designator not in table_map:
+                # self.project.airport_data.stands[]
+                pass
 
 
     def generate_fields(self):
@@ -124,14 +162,17 @@ class ProjectEditorWindow(QMainWindow):
 
         self.stand_list_layout = StandList(self.project)
         self.stand_list_layout.layout_title.setText("Stand List")
+        self.stand_list_layout.dataset_changed.connect(self.allow_update)
         self.main_layout.addLayout(self.stand_list_layout)
 
         self.runway_list_layout = RunwayList(self.project)
         self.runway_list_layout.layout_title.setText("Runway List")
+        self.runway_list_layout.dataset_changed.connect(self.allow_update)
         self.main_layout.addLayout(self.runway_list_layout)
 
         self.taxiway_list_layout = TaxiwayList(self.project)
         self.taxiway_list_layout.layout_title.setText("Taxiway List")
+        self.taxiway_list_layout.dataset_changed.connect(self.allow_update)
         self.main_layout.addLayout(self.taxiway_list_layout)
 
 
