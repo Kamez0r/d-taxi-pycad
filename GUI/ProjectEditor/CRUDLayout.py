@@ -1,6 +1,7 @@
-from PyQt6.QtWidgets import QVBoxLayout, QLabel, QLineEdit, QTableWidget, QTableWidgetItem
+from PyQt6.QtWidgets import QVBoxLayout, QLabel, QLineEdit, QTableWidget, QTableWidgetItem, QPushButton
 
 from GUI.ProjectEditor.PEWidgets import PELabel, PELineEdit
+from Project import GeoCoordinate
 
 
 class CRUDLayout(QVBoxLayout):
@@ -17,7 +18,6 @@ class CRUDLayout(QVBoxLayout):
     values: list[list]
 
     known_column_types = [
-        "ID",
         "STRING",
         "INTEGER",
         "FLOAT",
@@ -32,6 +32,7 @@ class CRUDLayout(QVBoxLayout):
         self.column_titles = []
         self.column_types = []
         self.column_defaults = []
+        self.values = []
 
         self.layout_title = PELabel("<Layout Title>")
 
@@ -50,7 +51,7 @@ class CRUDLayout(QVBoxLayout):
 
         self.addWidget(self.table)
 
-    def action_called(self, action_column_key):
+    def action_called(self, row_key, action_column_key):
         pass
 
     def add_column(self, column_key: str, column_title: str, column_type: str, default_value=None):
@@ -68,24 +69,39 @@ class CRUDLayout(QVBoxLayout):
         self.table.setColumnCount(len(self.column_keys))
         self.table.setHorizontalHeaderLabels(self.column_titles)
 
+    def update_cell_at(self, row, col):
+        value_row = self.values[row]
+
+        display_value = ""
+        if self.column_types[col] == "COORD":
+            display_value = str(self.values[row][col].getLatitude()) + "," + str(self.values[row][col].getLongitude())
+            self.table.setItem(row, col, QTableWidgetItem(display_value))
+        elif self.column_types[col] == "ACTION":
+            widget = QPushButton(text="ACT")
+            widget.pressed.connect(lambda r=row, c=self.column_keys[col]: self.action_called(r, c))
+
+            self.table.setCellWidget(row, col, widget)
+        else:
+            display_value = str(self.values[row][col])
+            self.table.setItem(row, col, QTableWidgetItem(display_value))
+
+
+
     def add_value(self, one_row_values: dict):
         new_row = []
+        self.table.setRowCount(len(self.values)+1)
         for column_key in self.column_keys:
             if not column_key in one_row_values:
                 column_index = self.column_keys.index(column_key)
                 one_row_values[column_key] = self.column_defaults[column_index]
             new_row.append(one_row_values[column_key])
-            self.table.setItem(0, 0, QTableWidgetItem(text="ASD"))
-
         self.values.append(new_row)
         # self.table.setRowCount(len(self.values))
 
         for column_key in one_row_values:
-            if not column_key in self.column_keys:
-                continue
-            column_value = one_row_values[column_key]
-
-
+            column_index = self.column_keys.index(column_key)
+            # self.table.setItem(0,column_index, self.get_widget_at(0, column_index))
+            self.update_cell_at(0, column_index)
 
     def add_values(self, value_list: list):
         for value in value_list:

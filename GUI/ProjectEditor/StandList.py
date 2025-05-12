@@ -11,13 +11,6 @@ class StandList(CRUDLayout):
         self.project = project
 
         self.add_column(
-            column_key="id",
-            column_title="#",
-            column_type="ID",
-            default_value=None
-        )
-
-        self.add_column(
             column_key="designator",
             column_title="Designator",
             column_type="STRING",
@@ -35,7 +28,10 @@ class StandList(CRUDLayout):
         self.set_able_edit(True)
         self.set_able_delete(True)
 
-        self.add_column({})
+        self.add_value({
+            "designator": "131",
+            "position": GeoCoordinate.from_tuple((13,31)),
+        })
 
-    def action_called(self, action_column_key):
-        pass
+    def action_called(self, row_index, action_column_key):
+        print("CALL FOR", row_index, action_column_key)
