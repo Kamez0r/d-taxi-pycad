@@ -1,5 +1,5 @@
 from PyQt6.QtCore import QSize, Qt
-from PyQt6.QtGui import QIcon, QFont, QDoubleValidator, QIntValidator
+from PyQt6.QtGui import QIcon, QFont, QDoubleValidator
 from PyQt6.QtWidgets import *
 from PyQt6.QtWidgets import QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QWidget, QScrollArea
 
@@ -9,10 +9,11 @@ from GUI.ProjectEditor.PEWidgets import PELabel, PELineEdit
 from GUI.ProjectEditor.RunwayList import RunwayList
 from GUI.ProjectEditor.StandList import StandList
 from GUI.ProjectEditor.TaxiwayList import TaxiwayList
-from Project import Project, GeoCoordinate
+from Project import Project
 
 
 class ProjectEditorWindow(QMainWindow):
+    runway_list_layout: RunwayList
     scroll_area: QScrollArea
     aerodrome_location_label: QLabel | QLabel
     main_widget: QWidget

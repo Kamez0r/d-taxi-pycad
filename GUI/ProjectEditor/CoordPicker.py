@@ -26,6 +26,8 @@ class CoordPicker(QVBoxLayout):
 
     def setLocation(self, location: GeoCoordinate):
         self.location = location
+        self.location_latitude.setText("Latitude: " + str(self.location.getLatitude()))
+        self.location_longitude.setText("Longitude: " + str(self.location.getLongitude()))
 
     def setLocationLabel(self, location_label_text: str):
         self.location_label_text = location_label_text
@@ -112,6 +114,7 @@ class CoordPicker(QVBoxLayout):
 
         # Button
         self.set_location_from_dec = QPushButton("Set")
+        self.set_location_from_dec.clicked.connect(self.on_set_from_dec)
         self.set_location_from_dec.setIcon(QIcon(CFG.ICON_CALCULATOR))
         self.set_location_from_dec.setIconSize(QSize(32, 32))
         self.set_location_from_dec.setFont(QFont("Consolas", 16))
@@ -125,3 +128,17 @@ class CoordPicker(QVBoxLayout):
 
         # Add to main layout
         self.addLayout(self.fifth_H_layout)
+
+    def on_set_from_dec(self):
+        if not self.lat_input.text().isnumeric() or not self.lon_input.text().isnumeric():
+            print("Invalid coordinate")
+            return
+
+        tupley = float(self.lat_input.text()) , float(self.lon_input.text())
+        self.lat_input.setText("")
+        self.lon_input.setText("")
+
+        if GeoCoordinate.check_valid_data(tupley):
+            self.setLocation(GeoCoordinate.from_tuple(tupley))
+        else:
+            print("Invalid coordinate", tupley)
