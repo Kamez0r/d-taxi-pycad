@@ -3,6 +3,7 @@ from PyQt6.QtGui import QIcon, QFont
 from PyQt6.QtWidgets import QVBoxLayout, QLabel, QLineEdit, QTableWidget, QTableWidgetItem, QPushButton
 
 import CFG
+from GUI.ProjectEditor.CRUDLayout.CoordPickerWindow import CoordPickerWindow
 from GUI.ProjectEditor.PEWidgets import PELabel, PELineEdit
 from Project import GeoCoordinate
 
@@ -66,6 +67,10 @@ class CRUDLayout(QVBoxLayout):
     def action_called(self, row_key, action_column_key):
         pass
 
+    def coord_picker_called(self, row_key, action_column_key):
+        pickerwin = CoordPickerWindow(self.parentWidget())
+
+
     def add_column(self, column_key: str, column_title: str, column_type: str, default_value=None):
         if column_key in self.column_keys:
             raise ValueError("Column name already exists")
@@ -87,8 +92,11 @@ class CRUDLayout(QVBoxLayout):
         display_value = ""
         if self.column_types[col] == "COORD":
             display_value = str(self.values[row][col].getLatitude()) + "," + str(self.values[row][col].getLongitude())
-            widget = QTableWidgetItem(display_value)
-            self.table.setItem(row, col, widget)
+
+            widget= QPushButton(text=display_value)
+            widget.pressed.connect(lambda r=row, c=self.column_keys[col]: self.coord_picker_called(r, c))
+            self.table.setCellWidget(row, col, widget)
+
         elif self.column_types[col] == "ACTION":
             widget = QPushButton(text="ACT")
             widget.pressed.connect(lambda r=row, c=self.column_keys[col]: self.action_called(r, c))
@@ -119,6 +127,10 @@ class CRUDLayout(QVBoxLayout):
     def add_values(self, value_list: list):
         for value in value_list:
             self.add_value(value)
+
+    def remove_value(self, row:int):
+        del self.values[row]
+        self.table.removeRow(row)
 
     def remove_column(self, column_key: str):
         index = self.column_keys.index(column_key)

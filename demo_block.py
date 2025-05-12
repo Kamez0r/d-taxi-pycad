@@ -27,6 +27,7 @@ class DemoCanvas(QGraphicsView):
         new_item = TaxiPortion({
             "parent_taxiway": twyB.get_serialized()
         })
+        # new_item = TaxiPortion()
         new_item.setPos(800, 0)
         self.scene().addItem(new_item)
 
