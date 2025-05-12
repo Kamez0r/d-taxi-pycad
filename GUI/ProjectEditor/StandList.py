@@ -24,8 +24,8 @@ class StandList(CRUDLayout):
             default_value=GeoCoordinate.from_tuple((0,0))
         )
 
-        self.set_able_view(True)
-        self.set_able_edit(True)
+        self.set_able_view(False)
+        self.set_able_edit(False)
         self.set_able_delete(True)
 
 

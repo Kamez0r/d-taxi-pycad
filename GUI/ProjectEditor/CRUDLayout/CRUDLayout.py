@@ -21,6 +21,8 @@ class CRUDLayout(QVBoxLayout):
     column_defaults: list
     values: list[list]
 
+    pickerwin: None | CoordPickerWindow
+
     known_column_types = [
         "STRING",
         "INTEGER",
@@ -62,13 +64,30 @@ class CRUDLayout(QVBoxLayout):
         self.table.setRowCount(0)
         self.table.setColumnCount(0)
 
+        self.pickerwin = None
+
         self.addWidget(self.table)
 
     def action_called(self, row_key, action_column_key):
         pass
 
     def coord_picker_called(self, row_key, action_column_key):
-        pickerwin = CoordPickerWindow(self.parentWidget())
+        if not self.pickerwin:
+            self.pickerwin = CoordPickerWindow(self.parentWidget())
+            self.pickerwin.on_value_set.connect(lambda r=row_key, c=action_column_key: self.coord_picker_responded(r,c))
+        else:
+            self.pickerwin.show()
+
+    def coord_picker_responded(self, row_key, action_column_key):
+        print("closing picker", row_key, action_column_key)
+        new_location = self.pickerwin.getLocation()
+
+        column_index = self.column_keys.index(action_column_key)
+        self.values[row_key][column_index] = new_location
+        self.update_cell_at(row_key, column_index)
+
+        self.pickerwin.close()
+        self.pickerwin = None
 
 
     def add_column(self, column_key: str, column_title: str, column_type: str, default_value=None):
