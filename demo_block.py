@@ -5,7 +5,11 @@ from PyQt6.QtWidgets import QMainWindow, QApplication, QGraphicsView, QGraphicsS
 
 from Project import GeoCoordinate
 from Project.Data import Taxiway, Runway
-from Project.Drawable.Block import TaxiPortion, RunwayPortion
+from Project.Drawable.Block.RunwayPortion import RunwayPortion
+from Project.Drawable.Block.TaxiPortion import TaxiPortion
+
+
+# from Project.Drawable.Block import TaxiPortion, RunwayPortion
 
 
 class DemoWindow(QMainWindow):
