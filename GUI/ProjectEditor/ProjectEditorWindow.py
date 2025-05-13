@@ -10,7 +10,7 @@ from GUI.ProjectEditor.RunwayList import RunwayList
 from GUI.ProjectEditor.StandList import StandList
 from GUI.ProjectEditor.TaxiwayList import TaxiwayList
 from Project import Project
-from Project.Data import Stand
+from Project.Data import Stand, Taxiway, Runway
 
 
 class ProjectEditorWindow(QMainWindow):
@@ -67,10 +67,56 @@ class ProjectEditorWindow(QMainWindow):
         self.force_update_stands()
 
     def force_update_runways(self):
-        pass
+        table_map = {}
+        json_map = {}
+
+        th1_idx = self.runway_list_layout.column_keys.index("threshold1")
+        th2_idx = self.runway_list_layout.column_keys.index("threshold2")
+        dir_modif_idx = self.runway_list_layout.column_keys.index("direction_modifier")
+        dir_suffix_idx = self.runway_list_layout.column_keys.index("direction_suffix")
+        for row in self.runway_list_layout.values:
+            obj = Runway(
+                magnetic_variation=self.project.airport_data.magnetic_variation,
+                direction_modifier=row[dir_modif_idx],
+                direction_suffix=row[dir_suffix_idx]
+            )
+            obj.init_from_threshold_threshold(
+                threshold1=row[th1_idx],
+                threshold2=row[th2_idx],
+            )
+            table_map[obj.get_designator()] = obj
+        for rw in self.project.airport_data.runways:
+            json_map[rw.get_designator()] = rw
+
+        # Check creation
+        for designator in table_map:
+            if designator not in json_map:
+                self.project.airport_data.add_runway(table_map[designator])
+            else:
+                inst = self.project.airport_data.get_runway_by_designator(designator)
+                inst.init_from_threshold_threshold(
+                    threshold1 = table_map[designator].threshold1,
+                    threshold2 = table_map[designator].threshold2,
+                )
+                inst.magnetic_variation = self.project.airport_data.magnetic_variation
+                inst.direction_modifier = table_map[designator].direction_modifier
+                inst.direction_suffix = table_map[designator].direction_suffix
 
     def force_update_taxiways(self):
-        pass
+        table_map = {}
+        json_map = {}
+
+        index_of_designator = self.taxiway_list_layout.column_keys.index("designator")
+        for row in self.taxiway_list_layout.values:
+            designator = row[index_of_designator]
+            table_map[designator] = row
+
+        for tw in self.project.airport_data.taxiways:
+            json_map[tw.get_designator()] = tw
+
+        for designator in table_map:
+            if designator not in json_map:
+                self.project.airport_data.add_taxiway(Taxiway(designator))
 
     def force_update_stands(self):
         table_map = {}
@@ -88,16 +134,15 @@ class ProjectEditorWindow(QMainWindow):
         # Check creation
         for designator in table_map:
             if designator not in json_map:
-                pass # creation found
                 self.project.airport_data.add_stand(Stand(
                     designator=table_map[designator][index_of_designator],
                     position=table_map[designator][index_of_position],
                 ))
-        # Check deletion
-        for designator in json_map:
-            if designator not in table_map:
-                # self.project.airport_data.stands[]
-                pass
+            else:
+                inst = self.project.airport_data.get_stand_by_designator(designator)
+                inst.position = table_map[designator][index_of_position]
+
+        # Let's check deletion...
 
 
     def generate_fields(self):
@@ -197,3 +242,22 @@ class ProjectEditorWindow(QMainWindow):
         self.mag_var_input.setText(str(self.project.airport_data.magnetic_variation))
         self.aerodrome_name_input.setText(self.project.airport_data.aerodrome_name)
         self.aerodrome_location_layout.setLocation(self.project.airport_data.aerodrome_location)
+
+        for st in self.project.airport_data.stands:
+            self.stand_list_layout.add_value({
+                "designator": st.get_designator(),
+                "position": st.position,
+            })
+
+        for tw in self.project.airport_data.taxiways:
+            self.taxiway_list_layout.add_value({
+                "designator": tw.get_designator(),
+            })
+
+        for rw in self.project.airport_data.runways:
+            self.runway_list_layout.add_value({
+                "direction_modifier": rw.direction_modifier,
+                "direction_suffix": rw.direction_suffix,
+                "threshold1": rw.threshold1,
+                "threshold2": rw.threshold2,
+            })

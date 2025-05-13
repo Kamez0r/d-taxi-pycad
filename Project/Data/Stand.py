@@ -45,7 +45,7 @@ class Stand:
         if not "access_taxiway" in serialized_data:
             return False
 
-        if not type(serialized_data["access_taxiway"]) == str:
+        if not type(serialized_data["access_taxiway"]) not in [str, None]:
             return False
 
         if not "conflict_stands" in serialized_data:
@@ -61,10 +61,14 @@ class Stand:
         for st in self.conflict_stands:
             sts.append(st.get_serialized())
 
+        access_taxiway = None
+        if self.access_taxiway is not None:
+            access_taxiway = self.access_taxiway.get_designator()
+
         return {
             "designator": self.designator,
             "position": self.position.get_serialized(),
-            "access_taxiway": self.access_taxiway.get_designator(),
+            "access_taxiway": access_taxiway,
             "conflict_stands": sts
         }
 

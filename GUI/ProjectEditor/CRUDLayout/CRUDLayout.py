@@ -158,13 +158,14 @@ class CRUDLayout(QVBoxLayout):
         for column_key in one_row_values:
             column_index = self.column_keys.index(column_key)
             # self.table.setItem(0,column_index, self.get_widget_at(0, column_index))
-            self.update_cell_at(len(self.values)-1, column_index)
+            self.update_cell_at(len(self.values) - 1, column_index)
 
     def add_values(self, value_list: list):
         for value in value_list:
             self.add_value(value)
 
     def remove_value(self, row:int):
+        print("request_delete", row)
         self.dataset_changed.emit()
         del self.values[row]
         self.table.removeRow(row)

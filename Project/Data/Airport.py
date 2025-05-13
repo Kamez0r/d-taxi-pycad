@@ -115,7 +115,10 @@ class Airport:
 
         # First pass, init empty endpoints
         for rw in sdata["runways"]:
-            self.add_runway(Runway.from_serialized_data(rw))
+            inst = Runway.from_serialized_data(rw)
+            self.add_runway(inst)
+            rw["designator"] = inst.get_designator()
+
 
         for tw in sdata["taxiways"]:
             self.add_taxiway(Taxiway.from_serialized_data(tw))
@@ -162,12 +165,13 @@ class Airport:
             own_instance = self.get_stand_by_designator(st["designator"])
             access_taxiway = self.get_taxiway_by_designator(st["access_taxiway"])
 
-            self.add_conflict_point_taxiway_stand(
-                access_taxiway,
-                own_instance,
-            )
+            if access_taxiway:
+                self.add_conflict_point_taxiway_stand(
+                    access_taxiway,
+                    own_instance,
+                )
 
-            for other_stand in st["conflicting_stands"]:
+            for other_stand in st["conflict_stands"]:
                 self.add_conflict_point_stand_stand(
                     own_instance,
                     self.get_stand_by_designator(other_stand)
@@ -193,8 +197,8 @@ class Airport:
         for taxiway in self.taxiways:
             if taxiway_designator == taxiway.get_designator():
                 return taxiway
-        raise KeyError("Invalid taxiway designator")
-
+        # raise KeyError("Invalid taxiway designator")
+        return None
     def get_stand_by_designator(self, stand_designator: str):
         for stand in self.stands:
             if stand_designator == stand.get_designator():

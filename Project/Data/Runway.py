@@ -33,7 +33,11 @@ class Runway:
         if not Runway.check_valid_data(sdata):
             raise TypeError("Invalid data provided")
 
-        new_instance = Runway(sdata["magnetic_variation"])
+        new_instance = Runway(
+            magnetic_variation=sdata["magnetic_variation"],
+            direction_modifier=sdata["direction_modifier"],
+            direction_suffix=sdata["direction_suffix"],
+        )
         new_instance.init_from_threshold_threshold(
             GeoCoordinate.from_tuple(sdata["threshold1"]),
             GeoCoordinate.from_tuple(sdata["threshold2"]),
