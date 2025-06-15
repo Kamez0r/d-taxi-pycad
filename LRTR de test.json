@@ -1,0 +1,192 @@
+{
+    "date_saved": "2025-06-16T02:05:14",
+    "airport_data": {
+        "aerodrome_icao": "LRTR",
+        "aerodrome_name": "Aeroportul International Timisoara Traian Vuia",
+        "magnetic_variation": 4.96,
+        "aerodrome_location": [
+            45.80972222222222,
+            21.337777777777777
+        ],
+        "runways": [
+            {
+                "__comment_designator": "11",
+                "__comment_opposite": "29",
+                "direction_modifier": 0,
+                "direction_suffix": "",
+                "magnetic_variation": 4.96,
+                "threshold1": [
+                    45.81527777777777,
+                    21.316666666666666
+                ],
+                "threshold2": [
+                    45.80444444444444,
+                    21.359166666666667
+                ],
+                "intersecting_runways": [],
+                "access_to_taxiways": []
+            }
+        ],
+        "taxiways": [
+            {
+                "designator": "A",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "B",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "C",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "L",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "M",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            }
+        ],
+        "stands": [
+            {
+                "designator": "1",
+                "position": [
+                    45.81097222222222,
+                    21.319672222222223
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "2",
+                "position": [
+                    45.810849999999995,
+                    21.32016388888889
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "3",
+                "position": [
+                    45.81068888888888,
+                    21.320805555555555
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "4",
+                "position": [
+                    45.81046111111111,
+                    21.321330555555555
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "5",
+                "position": [
+                    45.810091666666665,
+                    21.3228
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "6",
+                "position": [
+                    45.810091666666665,
+                    21.3228
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "7",
+                "position": [
+                    45.810091666666665,
+                    21.3228
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "8",
+                "position": [
+                    45.810091666666665,
+                    21.3228
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "9",
+                "position": [
+                    45.810091666666665,
+                    21.3228
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "10",
+                "position": [
+                    45.810091666666665,
+                    21.3228
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "11",
+                "position": [
+                    45.810091666666665,
+                    21.3228
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "12",
+                "position": [
+                    45.810091666666665,
+                    21.3228
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "13",
+                "position": [
+                    45.810091666666665,
+                    21.3228
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "14",
+                "position": [
+                    45.810091666666665,
+                    21.3228
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            }
+        ]
+    },
+    "drawables": []
+}
