@@ -1,0 +1,668 @@
+{
+    "date_saved": "2025-06-16T01:44:22",
+    "airport_data": {
+        "aerodrome_icao": "LROP",
+        "aerodrome_name": "Aeroportul International HENRI COANDA Bucuresti",
+        "magnetic_variation": 4.0,
+        "aerodrome_location": [
+            44.571111111111115,
+            26.084999999999997
+        ],
+        "runways": [
+            {
+                "__comment_designator": "8L",
+                "__comment_opposite": "26R",
+                "direction_modifier": 0,
+                "direction_suffix": "L",
+                "magnetic_variation": 4.0,
+                "threshold1": [
+                    44.57666666666667,
+                    26.084166666666665
+                ],
+                "threshold2": [
+                    44.580000000000005,
+                    26.12777777777778
+                ],
+                "intersecting_runways": [],
+                "access_to_taxiways": []
+            },
+            {
+                "__comment_designator": "8R",
+                "__comment_opposite": "26L",
+                "direction_modifier": 0,
+                "direction_suffix": "R",
+                "magnetic_variation": 4.0,
+                "threshold1": [
+                    44.56472222222222,
+                    26.076666666666668
+                ],
+                "threshold2": [
+                    44.56805555555556,
+                    26.120555555555555
+                ],
+                "intersecting_runways": [],
+                "access_to_taxiways": []
+            }
+        ],
+        "taxiways": [
+            {
+                "designator": "A",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "B",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "C",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "D",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "E",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "G",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "J",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "K",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "L",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "M",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "N",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "P",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "Q",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "S",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "T",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "V",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            },
+            {
+                "designator": "W",
+                "access_to_runways": [],
+                "access_to_taxiways": [],
+                "access_to_stands": []
+            }
+        ],
+        "stands": [
+            {
+                "designator": "101 ",
+                "position": [
+                    26.07884722,
+                    44.57106944
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "1021 ",
+                "position": [
+                    26.07946111,
+                    44.57108889
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "103 ",
+                "position": [
+                    26.08005833,
+                    44.57123056
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "104 ",
+                "position": [
+                    26.08059167,
+                    44.57128889
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "1051 ",
+                "position": [
+                    26.08112222,
+                    44.57135833
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "1061 ",
+                "position": [
+                    26.08166667,
+                    44.57139167
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "1071 ",
+                "position": [
+                    26.08231667,
+                    44.57122778
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "1081 ",
+                "position": [
+                    26.08253333,
+                    44.57089167
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "1091 ",
+                "position": [
+                    26.08245556,
+                    44.57045833
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "1101 ",
+                "position": [
+                    26.08194722,
+                    44.57036111
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "1111 ",
+                "position": [
+                    26.08130556,
+                    44.57031111
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "112 ",
+                "position": [
+                    26.08077222,
+                    44.57025
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "1131 ",
+                "position": [
+                    26.08022222,
+                    44.57031111
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "1141 ",
+                "position": [
+                    26.07961111,
+                    44.57018611
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "1151 ",
+                "position": [
+                    26.07899167,
+                    44.57010278
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "116 ",
+                "position": [
+                    26.07898611,
+                    44.56878889
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "117 ",
+                "position": [
+                    26.07903056,
+                    44.56848333
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "118 ",
+                "position": [
+                    26.079075,
+                    44.56811667
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "119 ",
+                "position": [
+                    26.08063333,
+                    44.56871389
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "120 ",
+                "position": [
+                    26.08118889,
+                    44.56875556
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "121 ",
+                "position": [
+                    26.08190278,
+                    44.56891667
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "122 ",
+                "position": [
+                    26.08238056,
+                    44.56897222
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "131 ",
+                "position": [
+                    26.07927778,
+                    44.57265556
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "132 ",
+                "position": [
+                    26.07983889,
+                    44.57269722
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "133 ",
+                "position": [
+                    26.08039722,
+                    44.57273889
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "134 ",
+                "position": [
+                    26.08095278,
+                    44.57278056
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "201 ",
+                "position": [
+                    26.10508056,
+                    44.56968056
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "202 ",
+                "position": [
+                    26.10395,
+                    44.56959444
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "203 ",
+                "position": [
+                    26.10277778,
+                    44.56950556
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "204 ",
+                "position": [
+                    26.10153611,
+                    44.569675
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "205 ",
+                "position": [
+                    26.10081111,
+                    44.56961944
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "206 ",
+                "position": [
+                    26.10017778,
+                    44.56956944
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "207 ",
+                "position": [
+                    26.09805278,
+                    44.56953056
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "208 ",
+                "position": [
+                    26.09750278,
+                    44.56948611
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "209 ",
+                "position": [
+                    26.09687778,
+                    44.56943889
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "210 ",
+                "position": [
+                    26.09632778,
+                    44.56939722
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "211 ",
+                "position": [
+                    26.09570278,
+                    44.56935
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "4031 ",
+                "position": [
+                    26.09839722,
+                    44.56928889
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "4041 ",
+                "position": [
+                    26.09759167,
+                    44.56922778
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "4051 ",
+                "position": [
+                    26.09678333,
+                    44.56916667
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "406A ",
+                "position": [
+                    26.0959,
+                    44.56919444
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "407A ",
+                "position": [
+                    26.09535556,
+                    44.56915278
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "408A ",
+                "position": [
+                    26.09481111,
+                    44.56911111
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "409A ",
+                "position": [
+                    26.09426667,
+                    44.56906944
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "410A ",
+                "position": [
+                    26.09372222,
+                    44.56902778
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "411A ",
+                "position": [
+                    26.09317778,
+                    44.56898611
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "412A ",
+                "position": [
+                    26.09263333,
+                    44.56894167
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "413A ",
+                "position": [
+                    26.09208889,
+                    44.5689
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "414A ",
+                "position": [
+                    26.09154444,
+                    44.56885833
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "415A ",
+                "position": [
+                    26.091,
+                    44.56881667
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "416A ",
+                "position": [
+                    26.09045556,
+                    44.568775
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "417A ",
+                "position": [
+                    26.08991111,
+                    44.56873333
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "418A ",
+                "position": [
+                    26.08936667,
+                    44.56869167
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "419A ",
+                "position": [
+                    26.08882222,
+                    44.56865
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "420A ",
+                "position": [
+                    26.08827778,
+                    44.56860556
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "421A ",
+                "position": [
+                    26.08773333,
+                    44.56856389
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            },
+            {
+                "designator": "422 ",
+                "position": [
+                    26.08722222,
+                    44.56863611
+                ],
+                "access_taxiway": null,
+                "conflict_stands": []
+            }
+        ]
+    },
+    "drawables": []
+}
