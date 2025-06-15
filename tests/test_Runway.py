@@ -37,7 +37,8 @@ class TestRunway(unittest.TestCase):
                 "length_m": 2820.0,
                 "mag_var": 6.0,
                 "expected": ("3", "21")
-            },
+            }
+
         ]
 
         for case in test_cases:
@@ -78,6 +79,25 @@ class TestRunway(unittest.TestCase):
                 "mag_var": 6.0,
                 "expected": (3, 21)
             },
+            {
+                "name": "LRTR de test 11/29",
+                "__comment_designator": "10",
+                "__comment_opposite": "28",
+                "direction_modifier": 0,
+                "direction_suffix": "",
+                "mag_var": 5.0,
+                "threshold1": [
+                    45.81527777777777,
+                    21.316666666666666
+                ],
+                "threshold2": [
+                    45.80444444444444,
+                    21.359166666666667
+                ],
+                "intersecting_runways": [],
+                "access_to_taxiways": [],
+                "expected": (11,29)
+            }
         ]
 
         for case in test_cases:
@@ -88,8 +108,10 @@ class TestRunway(unittest.TestCase):
                 runway = Runway(case["mag_var"])
                 runway.init_from_threshold_threshold(t1, t2)
 
+                print(runway.get_course_magnetic());
                 self.assertEqual(runway.get_intended_designator(), case["expected"][0])
                 self.assertEqual(runway.get_inverse_intended_designator(), case["expected"][1])
+
 
 
 if __name__ == '__main__':
